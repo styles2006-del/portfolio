@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AKPASSOU Dieudonné - Développeur Full Stack</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+    
+    <nav id="navbar">
+        <ul>
+            <li><a href="#accueil">Accueil</a></li>
+            <li><a href="#competences">Compétences</a></li>
+            <li><a href="#projets">Projets</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="accueil">
+        <div class="container">
+            <h1>AKPASSOU Dieudonné</h1>
+            <div class="typing">Développeur Full Stack</div>
+            <p style="margin-top: 30px; font-size: 1.2rem;">Passionné par la création d'applications web modernes et performantes</p>
+            <a href="#contact" class="contact-btn">Me Contacter</a>
+            <div class="scroll-indicator"></div>
+        </div>
+    </section>
+
+    <section id="competences">
+        <div class="container">
+            <h2>Mes Compétences</h2>
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <div class="tech-icon">🌐</div>
+                    <h3>HTML/CSS</h3>
+                    <p>Structure et design web</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">⚡</div>
+                    <h3>JavaScript</h3>
+                    <p>Interactivité dynamique</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">🐘</div>
+                    <h3>PHP</h3>
+                    <p>Backend robuste</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">🐍</div>
+                    <h3>Python</h3>
+                    <p>Polyvalence et puissance</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">🗄️</div>
+                    <h3>PostgreSQL</h3>
+                    <p>Base de données</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">☕</div>
+                    <h3>Java</h3>
+                    <p>Programmation orientée objet</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projets">
+        <div class="container">
+            <h2>Mes Projets</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <div class="project-content">
+                        <div class="project-icon">🌤️</div>
+                        <h3>Application Météo</h3>
+                        <p>Application web interactive permettant de consulter les prévisions météorologiques en temps réel avec une interface moderne et intuitive.</p>
+                        <ul style="text-align: left; margin-top: 20px; line-height: 2;">
+                            <li>Intégration API météo</li>
+                            <li>Interface responsive</li>
+                            <li>Géolocalisation</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-content">
+                        <div class="project-icon">📚</div>
+                        <h3>Gestion de Bibliothèque</h3>
+                        <p>Système complet de gestion de bibliothèque permettant la gestion des livres, des emprunts et des utilisateurs avec une base de données PostgreSQL.</p>
+                        <ul style="text-align: left; margin-top: 20px; line-height: 2;">
+                            <li>CRUD complet</li>
+                            <li>Gestion des emprunts</li>
+                            <li>Interface administrateur</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container" style="text-align: center;">
+            <h2>Contactez-moi</h2>
+            <p style="font-size: 1.3rem; margin-top: 20px;">Je suis disponible pour vos projets !</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    📧 Email : asta22157@gmail.com
+                </div>
+                <div class="contact-item">
+                    📱 Téléphone : +228 71 39 77 64
+                </div>
+                <div class="contact-item">
+                    🐙 GitHub : github.com/styles2006-del
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Création des particules animées
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 15 + 's';
+            particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            particlesContainer.appendChild(particle);
+        }
+
+        // Animation de la navbar au scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll pour les liens
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        // Animation au scroll pour les éléments
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 1s forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.container').forEach(el => observer.observe(el));
+
+        // Effet de parallaxe léger
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('#accueil .container');
+            if (parallax) {
+                parallax.style.transform = translateY(${scrolled * 0.3}px);
+            }
+        });
+    </script>
+</body>
+</html>
